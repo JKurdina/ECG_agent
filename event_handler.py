@@ -1,3 +1,4 @@
+import json
 
 class Event:
     def __init__(self, x, y, name):
@@ -16,45 +17,34 @@ class Event_handler:
         self.arr_e.clear()
 
     def save_to_file(self, filename):
-        f = open(filename, 'w')
+        dict = {}
+        k = 0
+        with open(filename, 'w') as f:
+            for event in self.arr_e:
+                dict1 = {}
+                dict1["name"] = event.name
+                dict1["x"] = event.x
+                dict1["y"] = event.y
 
-        for event in self.arr_e:
-            f.write(f"({event.x}, {event.y})\n")
+                dict[k] = dict1
+                k = k + 1
 
-        f.close()
+            json.dump(dict, f)
+
+
 
     def restore_from_file(self, filename):
-        f = open(filename)
-
-        for line in f:
-            x = ''
-            y = ''
-            flag = True
-            for l in line:
-
-                if l == "(":
-                    pass
-                elif l == ")":
-                    flag = True
-                elif l == ",":
-                    flag = False
-                elif l in "0123456789.-":
-                    if flag:
-                        x = x + l
-                    else:
-                        y = y + l
-                else:
-                    pass
-
-            e = Event(x, y)
-            self.add_elem(e)
-
-        f.close()
+        with open(filename, 'r') as f:
+            data = json.loads(f.read())
+            for event in data.keys():
+                event = Event(data[event]["x"], data[event]["y"], data[event]["name"])
+                self.add_elem(event)
 
     def print_events(self):
 
         for event in self.arr_e:
-            print(f"({event.x}, {event.y})\n")
+            print(f"({event.name}, {event.x}, {event.y})\n")
+
 
 
 
