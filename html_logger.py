@@ -32,8 +32,6 @@ class HtmlLogger:
         plt.close(fig)
         self.save()
 
-
-
     def save(self):
         filename = self.name + '.html'
         if self.dir_path is not None:
