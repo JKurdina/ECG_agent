@@ -21,13 +21,18 @@ class HtmlLogger:
         self.html += text + '<br>'
         self.save()
 
-    def add_fig(self, fig):
+    def add_fig(self, fig, position):
         tmpfile = BytesIO()
         fig.savefig(tmpfile, format='png', pad_inches=0.0, bbox_inches="tight")
         encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
-        self.html += '<img src=\'data:image/png;base64,{}\'>'.format(encoded) + '<br>'
+        if position == "":
+            self.html += '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+        if position == "end":
+            self.html += '<img src=\'data:image/png;base64,{}\'>'.format(encoded) + '<br>'
         plt.close(fig)
         self.save()
+
+
 
     def save(self):
         filename = self.name + '.html'
