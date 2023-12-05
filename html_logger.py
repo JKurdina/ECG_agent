@@ -28,7 +28,15 @@ class HtmlLogger:
         self.html += '<img src=\'data:image/png;base64,{}\'>'.format(encoded) + '<br>'
         plt.close(fig)
         self.save()
-
+        
+    def add_fig_one_line(self, fig):
+            tmpfile = BytesIO()
+            fig.savefig(tmpfile, format='png', pad_inches=0.0, bbox_inches="tight")
+            encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+            self.html += '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+            plt.close(fig)
+            self.save()
+            
     def save(self):
         filename = self.name + '.html'
         if self.dir_path is not None:
