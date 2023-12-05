@@ -45,7 +45,3 @@ class Learning_case1:
             log.add_fig(fig, "end")
             log.add_line_little()
 
-
-
-stat
-
