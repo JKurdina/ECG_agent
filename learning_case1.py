@@ -47,6 +47,5 @@ class Learning_case1:
 
 
 
-case1 = Learning_case1()
-case1.draw()
+stat
 
