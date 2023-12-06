@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 from easygui import enterbox
 from matplotlib.patches import Ellipse
 
+import print_ecg
 import savers
 from print_ecg import draw_ECG
+
 
 
 class Event:
@@ -52,6 +54,18 @@ class Event_handler:
 
         for event in self.arr_e:
             print(f"({event.name}, {event.x}, {event.y})\n")
+
+    def get_fig(self):
+        x = []
+        y = []
+        for event in self.arr_e:
+            x.append(event.x)
+            y.append(event.y)
+
+        fig, ax = plt.subplots()
+        print_ecg.draw_ECG_events(ax, x, y)
+        return fig
+
             
 class ECGclicker:
     
@@ -101,6 +115,7 @@ class ECGclicker:
         self.ax.add_patch(ellipse)
         
         plt.plot(x,y,'ro')
+
         
         
         
@@ -121,4 +136,7 @@ class ECGclicker:
        
         
         
+
+
+
 
