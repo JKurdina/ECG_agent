@@ -24,3 +24,10 @@ def draw_ECG(ax, signal):
     ax.set_xticks(range(0, len(signal),5))
     ax.grid(which='major', axis='both', linestyle='--', alpha=0.75)
     ax.plot(signal, 'o', label='vals', color="black",  markersize=2)
+
+def draw_ECG_events(ax, signal_x, signal_y):
+    ax.plot(signal_x, signal_y,  color='black', alpha=0.2, label="ECG")
+    make_arrows(ax)
+    ax.set_xticks(range(0, len(signal_x),5))
+    ax.grid(which='major', axis='both', linestyle='--', alpha=0.75)
+    ax.plot(signal_x, signal_y, 'o', label='vals', color="black",  markersize=2)

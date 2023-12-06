@@ -1,14 +1,15 @@
 import savers
-from event_handler import Event_handler as event
+import ecgClicker
 from print_ecg import draw_ECG
 import matplotlib.pyplot as plt
 from  html_logger import HtmlLogger
+
 class Learning_case1:
 
     def __init__(self):
         
         self.etalon_signal = savers.read_etalon_signal("etalon_signal.json")
-        self.events_set = event()
+        self.events_set = ecgClicker.Event_handler()
         self.events_set.restore_from_file("events.json")
         self.positives = savers.read_signals_pos("signals.json")
         self.negatives = savers.read_signals_neg("signals.json")
@@ -27,7 +28,12 @@ class Learning_case1:
 
         fig, ax = plt.subplots()
         draw_ECG(ax, self.get_etalon_signal())
+        log.add_fig(fig, "")
+
+        fig, ax = plt.subplots()
+        fig = self.get_etalons_events_set().get_fig()
         log.add_fig(fig, "end")
+
 
         log.add_line_big()
         log.add_text("Positives examples")
@@ -46,4 +52,5 @@ class Learning_case1:
             draw_ECG(ax, signal)
             log.add_fig(fig, "end")
             log.add_line_little()
+
 
