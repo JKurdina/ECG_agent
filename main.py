@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 import savers
 from ecgClicker import ECGclicker, Event_handler
-# from learning_case1 import Learning_case1 as case1
+from learning_case1 import Learning_case1 as case1
 
 
 def load_data():
@@ -39,13 +39,17 @@ def save_etalon():
 if __name__ == '__main__':
     
     # ------------------------click etalon------------------
-    fig, ax = plt.subplots();
-    path_events_file = "D:\\5 семестр\\Курсовая\\ECG_agent\\events.json" 
-    path_etalon_file = "D:\\5 семестр\\Курсовая\\ECG_agent\\etalon_signal.json"
+    # fig, ax = plt.subplots();
+    # path_events_file = "D:\\5 семестр\\Курсовая\\ECG_agent\\events.json" 
+    # path_etalon_file = "D:\\5 семестр\\Курсовая\\ECG_agent\\etalon_signal.json"
 
-    events = ECGclicker(fig, ax, path_etalon_file, path_events_file)
+    # events = ECGclicker(fig, ax, path_etalon_file, path_events_file)
     
-    events.draw_ecg_click()
+    # events.draw_ecg_click()
+    
+    case = case1()
+    
+    case.draw()
     # ----------------------------------------------------
     
     # arr_e_1 = Event_handler()
@@ -108,6 +112,4 @@ if __name__ == '__main__':
     # pos = case.get_positives()
     # neg = case.get_negatives()
     # events = case.get_etalons_events_set()
-
-
 

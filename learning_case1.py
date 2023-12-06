@@ -27,7 +27,7 @@ class Learning_case1:
         log.add_text("Etalon signal and Events")
 
         fig, ax = plt.subplots()
-        draw_ECG(ax, self.get_etalon_signal())
+        draw_ECG(ax, self.get_etalon_signal()[0:500])
         log.add_fig(fig, "")
 
         fig, ax = plt.subplots()
@@ -40,7 +40,7 @@ class Learning_case1:
         signals_pos = self.get_positives()
         for signal in signals_pos:
             fig, ax = plt.subplots()
-            draw_ECG(ax, signal)
+            draw_ECG(ax, signal[0:500])
             log.add_fig(fig, "end")
             log.add_line_little()
 
@@ -49,7 +49,7 @@ class Learning_case1:
         signals_neg = self.get_negatives()
         for signal in signals_neg:
             fig, ax = plt.subplots()
-            draw_ECG(ax, signal)
+            draw_ECG(ax, signal[0:500])
             log.add_fig(fig, "end")
             log.add_line_little()
 
